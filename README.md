@@ -1,203 +1,373 @@
-# Cloud File Processing Platform
+# 🚀 CloudVault – AI-Powered Document Processing Platform
 
-An AI-powered document processing platform built with Django REST Framework, Celery, Redis, PostgreSQL, Docker, and Gemini AI.
+CloudVault is a full-stack AI-powered document processing platform that allows users to upload PDF documents, automatically extract content, classify document types, and generate intelligent summaries using Google's Gemini AI.
 
-The platform allows users to upload documents, process them asynchronously in the background, generate AI-powered summaries, classify document content, and retrieve structured results through secure REST APIs.
-
----
-
-## Features
-
-- JWT Authentication
-- Secure File Uploads
-- AI-Powered Document Summarization
-- Document Classification
-- Background Processing with Celery
-- Redis Message Broker
-- PostgreSQL Database
-- Dockerized Deployment
-- RESTful APIs
-- Environment Variable Configuration
+The platform is built with a scalable asynchronous architecture using Django REST Framework, Celery, Redis, PostgreSQL, Docker, and React, demonstrating modern backend engineering, distributed task processing, authentication, and AI integration.
 
 ---
 
-## Architecture Overview
+## 📌 Project Overview
 
-The application follows an event-driven architecture where document processing happens asynchronously.
+Organizations process hundreds of documents daily. Manually reading, categorizing, and summarizing them is inefficient and time-consuming.
+
+CloudVault automates this workflow by:
+
+* Securely uploading PDF documents
+* Extracting document content automatically
+* Processing files asynchronously using Celery
+* Generating AI-powered summaries using Gemini AI
+* Classifying document types automatically
+* Providing a centralized dashboard for document management
+
+---
+
+## 🏗️ System Architecture
+
+### Processing Workflow
 
 ```text
-User
- │
- ▼
+User Uploads PDF
+       │
+       ▼
+React Frontend
+       │
+       ▼
 Django REST API
- │
- ├── Stores File Metadata
- │
- ├── Uploads Document
- │
- ▼
-Celery Task Queue
- │
- ▼
-Redis Broker
- │
- ▼
-Celery Worker
- │
- ├── Extract Document Text
- ├── Generate AI Summary
- ├── Classify Document Type
- │
- ▼
+       │
+       ▼
 PostgreSQL Database
- │
- ▼
-Processed Results API
+       │
+       ▼
+Celery Task Queue
+       │
+       ▼
+Redis Broker
+       │
+       ▼
+Gemini AI Processing
+       │
+       ▼
+Summary + Classification
+       │
+       ▼
+Dashboard Display
 ```
 
 ---
 
-## Technology Stack
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* React Router
+* Axios
+* Tailwind CSS
 
 ### Backend
 
-- Django
-- Django REST Framework
-- Simple JWT
-
-### Background Processing
-
-- Celery
-- Redis
+* Django
+* Django REST Framework
+* JWT Authentication
 
 ### Database
 
-- PostgreSQL
+* PostgreSQL
 
-### AI Processing
+### Background Processing
 
-- Google Gemini API
+* Celery
+* Redis
+
+### AI Integration
+
+* Google Gemini API
 
 ### DevOps
 
-- Docker
-- Docker Compose
+* Docker
+* Docker Compose
 
 ---
 
-## Project Structure
+## ✨ Features
+
+### 🔐 Authentication
+
+* User Registration
+* Secure Login
+* JWT Authentication
+* Protected Routes
+
+### 📂 File Management
+
+* Upload PDF Documents
+* Store User-Specific Files
+* View Uploaded Documents
+* Delete Documents
+
+### 🤖 AI Processing
+
+* PDF Text Extraction
+* Automatic Document Classification
+* AI Summary Generation
+* Background Processing using Celery
+
+### 📊 Dashboard
+
+* User-specific document management
+* Upload tracking
+* Processing status updates
+* Document detail view
+
+---
+
+# 📸 Application Screenshots
+
+## Login Page
+
+![Login Page](screenshots/login_page.png)
+
+---
+
+## Dashboard
+
+![Dashboard](screenshots/dashboard_page.png)
+
+---
+
+## Upload Document
+
+![Upload Page](screenshots/upload_page.png)
+
+---
+
+## Document Details & AI Summary
+
+![Document Details](screenshots/document_detail_page.png)
+
+---
+
+## Project Architecture
+
+![Project Flow](screenshots/project_flow.png)
+
+---
+
+## ⚡ Asynchronous Processing with Celery
+
+CloudVault uses Celery workers and Redis to process uploaded documents asynchronously.
+
+Benefits:
+
+* Non-blocking uploads
+* Better scalability
+* Faster user experience
+* Background AI processing
+* Distributed task execution
+
+### Celery Processing
+
+![Celery Worker](screenshots/celery-error-removed.png)
+
+---
+
+## 🔒 Security Features
+
+* JWT Authentication
+* User-specific document isolation
+* Protected API endpoints
+* Environment-based configuration
+* Secret key management
+* Dockerized deployment architecture
+
+---
+
+## 📂 Project Structure
 
 ```text
-backend/
+cloud-file-processing-platform/
 │
-├── accounts/
-│   ├── authentication
-│   └── user management
+├── backend/
+│   ├── accounts/
+│   ├── uploads/
+│   ├── processing/
+│   ├── config/
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── requirements.txt
 │
-├── uploads/
-│   ├── file upload APIs
-│   ├── serializers
-│   ├── Gemini integration
-│   └── result retrieval
+├── cloudvault/
+│   ├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── api/
+│   └── package.json
 │
-├── processing/
-│   └── Celery background tasks
+├── screenshots/
 │
-├── config/
-│   ├── settings
-│   ├── urls
-│   └── celery configuration
-│
-├── media/
-│   └── uploaded files
-│
-├── Dockerfile
-├── docker-compose.yml
-└── requirements.txt
+└── README.md
 ```
 
 ---
 
-## Processing Workflow
+## 🚀 Local Setup
 
-1. User authenticates using JWT.
-2. User uploads a document.
-3. File metadata is stored in PostgreSQL.
-4. Celery task is dispatched.
-5. Redis queues the task.
-6. Celery worker processes the document.
-7. Gemini generates:
-   - Document Summary
-   - Document Classification
-8. Results are stored in PostgreSQL.
-9. User retrieves processed results through the API.
+### Clone Repository
 
----
+```bash
+git clone https://github.com/girishpatil935/cloud-file-processing-platform.git
 
-## Screenshots
-
-### System Architecture
-
-![System Architecture](./screenshots/project_flow.png)
-
----
-
-### Celery Background Processing
-
-![Celery Processing](./screenshots/celery-error-removed.png)
-
----
-
-### Processed Document Output
-
-![Processed Output](./screenshots/test.png)
-
----
-
-## Example API Response
-
-```json
-{
-  "id": 12,
-  "status": "COMPLETED",
-  "document_type": "Other",
-  "summary": "Generated document summary...",
-  "uploaded_at": "2026-06-10T06:48:48Z"
-}
+cd cloud-file-processing-platform
 ```
 
 ---
 
-## Key Learning Outcomes
+## Backend Setup
 
-This project helped explore:
+```bash
+cd backend
 
-- Asynchronous task processing using Celery
-- Message broker architecture with Redis
-- AI integration using Gemini
-- Docker containerization
-- PostgreSQL database management
-- JWT-based authentication
-- Production-oriented backend architecture
-- Event-driven processing workflows
+python -m venv venv
+
+venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+
+Create a `.env` file:
+
+```env
+SECRET_KEY=your_secret_key
+
+DEBUG=True
+
+DB_NAME=file_processing_db
+DB_USER=postgres
+DB_PASSWORD=password
+DB_HOST=db
+DB_PORT=5432
+
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Start services:
+
+```bash
+docker compose up --build
+```
+
+Run migrations:
+
+```bash
+docker compose exec web python manage.py migrate
+```
 
 ---
 
-## Future Improvements
+## Frontend Setup
 
-- React Frontend Dashboard
-- Real-Time Processing Status Updates
-- WebSocket Notifications
-- OCR Support for Images
-- Multiple AI Model Support
-- File Sharing and Collaboration
-- Analytics Dashboard
-- AWS Deployment Pipeline
+```bash
+cd cloudvault
+
+npm install
+
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Backend:
+
+```text
+http://localhost:8000
+```
 
 ---
 
-## Author
+## 🎯 Skills Demonstrated
 
-**Girish Patil**
+This project demonstrates hands-on experience with:
+
+### Backend Engineering
+
+* Django REST Framework
+* REST API Design
+* JWT Authentication
+* Database Modeling
+
+### Distributed Systems
+
+* Celery Task Queues
+* Redis Message Broker
+* Asynchronous Processing
+
+### Database Management
+
+* PostgreSQL
+* Data Persistence
+* Query Optimization Concepts
+
+### DevOps
+
+* Docker
+* Docker Compose
+* Environment Configuration
+
+### AI Integration
+
+* Google Gemini API
+* Prompt Engineering
+* Automated Content Analysis
+
+### Frontend Development
+
+* React
+* API Integration
+* State Management
+* Responsive UI Design
+
+---
+
+## 🔮 Future Improvements
+
+* Dark / Light Theme Customization
+* OCR Support for Images
+* Multiple AI Model Support
+* Real-Time Notifications
+* WebSocket Integration
+* File Sharing & Collaboration
+* Analytics Dashboard
+* AWS Deployment Pipeline
+* Subscription-Based SaaS Features
+
+---
+
+## 👨‍💻 Author
+
+### Girish Patil
 
 Backend Developer focused on building scalable systems, distributed workflows, and AI-powered applications.
+
+### Areas of Interest
+
+* Backend Engineering
+* System Design
+* Distributed Systems
+* Artificial Intelligence
+* Cloud Technologies
+* Software Architecture
+
+---
+
+## ⭐ Support
+
+If you found this project interesting, consider giving it a star.
+
+It helps others discover the project and supports continued development.

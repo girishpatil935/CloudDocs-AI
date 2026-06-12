@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env
+
+# Django
+db.sqlite3
+media/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment Files
+.env
+.env.local
+.env.production
+!.env.example
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
